@@ -34,8 +34,8 @@ namespace WebApi
             DB.Accounts.Add(new Account { Nickname = "Emperor", Roles = new List<string>(new string[] { "Admin", "User" }) });
             DB.Accounts.Add(new Account { Nickname = "CrazyDestroyer1996", Roles = new List<string>(new string[] { "User" }) });
 
-            DB.Characters.Add(new Character { Name = "Anakin", Class = "Warrior", Experience = 0, Level = 1, AccountId=1 });
-            DB.Characters.Add(new Character { Name = "Pop", Class = "Prist", Experience = 30000, Level = 4, AccountId = 1 });
+            DB.Characters.Add(new Character { Name = "Tankist78", Class = "Warrior", Experience = 0, Level = 1, AccountId=1 });
+            DB.Characters.Add(new Character { Name = "Celestial", Class = "Prist", Experience = 30000, Level = 4, AccountId = 1 });
             DB.Characters.Add(new Character { Name = "Gendalf", Class = "Mage", Experience = 40000, Level = 5, AccountId = 1 });
 
         }
