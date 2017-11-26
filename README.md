@@ -2,6 +2,11 @@
 This is a basis for the third Laboratory task within the Programming for the Internet course.
 
 
-Path to the API for testing:
+The API is located at ksit.xyz domain.
 
-ksit.xyz/game/v1/
+The strating page is located here: http://ksit.xyz
+
+
+And here is the URL for all characters of account 1:
+
+**ksit.xyz/game/v1/accounts/1/characters**
