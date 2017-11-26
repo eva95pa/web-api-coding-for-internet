@@ -9,4 +9,4 @@ The strating page is located here: http://ksit.xyz
 
 And here is the URL for all characters of account 1:
 
-**ksit.xyz/game/v1/accounts/1/characters**
+**http://ksit.xyz/game/v1/accounts/1/characters**
