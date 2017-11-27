@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>REST API Client Page</title>
+    <link rel="shortcut icon" href="http://icons.iconseeker.com/png/fullsize/leopard-folder-variations/toolbarsitesfoldericon.png">
+</head>
+
+<body>
+    <div style="padding-left:20%; padding-right:20%; padding-top:2cm">
+        <h1>This is a test page for exercising REST API queries via jQuery tools.</h1>
+
+        <div>
+            <p>
+                The page is returned as a response body from a simple web-server build on the .net HttpListner object (<a href="https://msdn.microsoft.com/en-us/library/system.net.httplistener(v=vs.110).aspx" />info</a>).
+                The reson, why we need to return this page in response from a server instead of opening it as a local file in a browser, is that according to the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">Same Origin Polycy</a> we cannot get resources from the domains different from the domain of the page origin and some browsers set the Origin HTTP header to null, which is not allowed.
+            </p>
+            <p>
+                Here are some request exapmles already implemented in this page.
+            </p>
+        </div>
+        <ol>
+            <li>
+                <p>
+                    <b>POST /game/v1/accounts</b>
+                </p>
+                <div>
+                    <p>
+                        This request allows us to to create a new account:
+                        <form id="createAccountForm">
+                            <table>
+                                <tr>
+                                    <td>Nickname:</td>
+                                    <td><input type="text" id="accountNickname" value="Noname"></td>
+                                </tr>
+                                <tr>
+                                    <td>Roles (comma separated):</td>
+                                    <td><input type="text" id="accountRoles" value="User"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="button" value="Create account" onclick="createAccount();" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Last created Account ID:</td>
+                                    <td id="lastCreatedAccountId"></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p>
+                    <b>GET /game/v1/accounts</b>
+                </p>
+                <div>
+                    <p>
+                        Here will be displayed all the accounts in the system if you press this button:
+                        <input type="button" value="Get all accounts" onclick="findAllAccounts();" />
+                        <ul id="accounts"></ul>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p>
+                    <b>PUT /game/v1/accounts/{accountId}</b>
+                </p>
+                <div>
+                    <p>
+                        Now you can update an account:
+                        <form id="updateAccountForm">
+                            <table>
+                                <tr>
+                                    <td>Account ID:</td>
+                                    <td><input type="text" id="updateAccountId"></td>
+                                </tr>
+                                <tr>
+                                    <td>Nickname:</td>
+                                    <td><input type="text" id="updateAccountNickname"></td>
+                                </tr>
+                                <tr>
+                                    <td>Roles (comma separated):</td>
+                                    <td><input type="text" id="apdateAccountRoles"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="button" value="Update account" onclick="updateAccount();" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Last result:</td>
+                                    <td id="lastUpdateAccountResult"></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p>
+                    <b>DELETE /game/v1/accounts/{accontId}</b>
+                </p>
+                <div>
+                    <p>
+                        Finally, you can delete an account using its identifier:
+                        <form id="deleteAccountForm">
+                            <table>
+                                <tr>
+                                    <td>Account ID:</td>
+                                    <td><input type="text" id="accountId" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="button" value="Delete the account" onclick="deleteAccount();" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Last result:</td>
+                                    <td id="deleteAccountResult"></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </p>
+                </div>
+            </li>
+        </ol>
+    </div>
+</body>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+    var apiBaseUrl = 'http://ksit.xyz/game/v1';
+    var accountsUri = apiBaseUrl + '/accounts';
+
+    function createAccount() {
+        var account = {};
+        account.Nickname = $("#accountNickname").val();
+        account.Roles = $("#accountRoles").val();
+
+        $.ajax({
+            url: accountsUri,
+            type: 'POST',
+            data: account,
+            success: function (data) {
+                $("#lastCreatedAccountId").text(data.Id);
+            }
+        });
+    }
+
+    function findAllAccounts() {
+        $.getJSON(accountsUri)
+            .done(function (data) {
+                $('#accounts').empty();
+                $.each(data, function (key, account) {
+                    $('<li>', { text: formatAccount(account) }).appendTo($('#accounts'));
+                });
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                $('<li>', { text: "Error during obtaining accounts" }).appendTo($('#accounts'));
+            });
+    }
+
+    function updateAccount() {
+        var account = {};
+        account.Nickname = $("#updateAccountNickname").val();
+        account.Roles = $("#updateAccountRoles").val();
+        account.Id = $("#updateAccountId").val();
+
+        var specificAccountUri = accountsUri + '/' + $("#updateAccountId").val();
+        $.ajax({
+            url: specificAccountUri,
+            type: 'PUT',
+            data: account,
+            success: function (result) {
+                $("#lastUpdateAccountResult").text("Success");
+            },
+            fail: function (result) {
+                $("#lastUpdateAccountResult").text("Failure");
+            }
+        });
+    }
+
+    function deleteAccount() {
+        var specificAccountUri = accountsUri + '/' + $("#accountId").val();
+        $.ajax({
+            url: specificAccountUri,
+            type: 'DELETE',
+            success: function (result) {
+                $("#deleteAccountResult").text("Success");
+            },
+            fail: function (result) {
+                $("#deleteAccountResult").text("Failure");
+            }
+        });
+    }
+
+    function formatAccount(account) {
+        return account.Id + '. ' + account.Nickname + ': ' + account.Roles;
+    }
+</script>
+</html>
