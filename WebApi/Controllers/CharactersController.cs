@@ -21,11 +21,12 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public Character AddCharacter([FromBody]Character character)
+        public Character AddCharacter(int accountId, [FromBody]Character character)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            character.AccountId = accountId;
             var entity = DB.Characters.Add(character);
             DB.Inventories.Add(new Inventory() { CharacterId = entity.Id, Capacity = 100 });
             return entity;
@@ -41,9 +42,10 @@ namespace WebApi.Controllers
 
         [HttpPut]
         [Route("{characterId:int}")]
-        public Character UpdateCharacter(int characterId, [FromBody]Character character)
+        public Character UpdateCharacter(int accountId, int characterId, [FromBody]Character character)
         {
             character.Id = characterId;
+            character.AccountId = accountId;
             DB.Characters.Update(character);
 
             var updatedCharacter = DB.Characters.Find(characterId);

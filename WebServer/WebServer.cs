@@ -63,16 +63,19 @@ namespace WebServer
             using (NetworkStream stream = client.GetStream())
             {                
                 string messageBody = File.ReadAllText("RestClientPage.html");
-                byte[] buffer = Encoding.ASCII.GetBytes(messageBody);
+                byte[] buffer = Encoding.UTF8.GetBytes(messageBody);
                 string statringLine = "HTTP/1.1 200 OK";
-                string headers = "Content-Length:" + buffer.Length;
+                string headers = "Content-Length:" + buffer.Length + Environment.NewLine +
+                                                           "Connection: Close" + Environment.NewLine +
+                                                           "Content-Type: text/html; charset=UTF-8" + Environment.NewLine +
+                                                           "Content-Encoding: UTF-8";
 
                 string httpResponse = statringLine + Environment.NewLine +
                                       headers + Environment.NewLine +
                                       Environment.NewLine +
                                       messageBody;
 
-                buffer = Encoding.ASCII.GetBytes(httpResponse);
+                buffer = Encoding.UTF8.GetBytes(httpResponse);
                 stream.Write(buffer, 0, buffer.Length);
                 Thread.Sleep(200);
                 stream.Flush();
