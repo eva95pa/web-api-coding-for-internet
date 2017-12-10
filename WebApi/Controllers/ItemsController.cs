@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApi.Models;
 using WebApi.Repositories;
 
 namespace WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("game/v1/accounts/{accountId:int}/characters/{characterId:int}/inventory/items")]
     public class ItemsController : ApiController
     {
