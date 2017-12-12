@@ -24,5 +24,8 @@ namespace WebApi.Repositories
 
         private static AchievementsRepository achievementsRepository = new AchievementsRepository();
         public static AchievementsRepository Achievements { get { return achievementsRepository; } }
+
+        private static SubscriptionsRepository subscriptionsRepository = new SubscriptionsRepository();
+        public static SubscriptionsRepository Subscription { get { return subscriptionsRepository; } }
     }
 }
