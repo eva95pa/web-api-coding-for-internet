@@ -15,7 +15,6 @@ namespace WebApi.Models
 
         [Required]
         public int Cost { get; set; }
-        public int CharacterId { get; set; }
 
         [JsonIgnore]
         [XmlIgnore]
