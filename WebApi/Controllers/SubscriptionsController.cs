@@ -10,7 +10,7 @@ using WebApi.Repositories;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("game/v1/accounts/{accountId:int}/subscriptions/")]
+    [RoutePrefix("game/v1/accounts/{accountId:int}/subscriptions")]
     public class SubscriptionsController : ApiController
     {
         [Route("")]
@@ -30,21 +30,21 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("{accountId:int}")]
-        public Subscription UpdateSubscription(int subscriptionID, [FromBody]Subscription subscription)
+        [Route("{subscriptionId:int}")]
+        public Subscription UpdateSubscription(int subscriptionId, [FromBody]Subscription subscription)
         {
-            subscription.Id = subscriptionID;
+            subscription.Id = subscriptionId;
             DB.Subscription.Update(subscription);
 
-            var updateSubscription = DB.Subscription.Find(subscriptionID);
+            var updateSubscription = DB.Subscription.Find(subscriptionId);
             return updateSubscription;
         }
 
         [HttpDelete]
-        [Route("{accountId:int}")]
-        public void RemoveSubscription(int subscriptionID)
+        [Route("{subscriptionId:int}")]
+        public void RemoveSubscription(int subscriptionId)
         {
-            var subscription = DB.Subscription.Find(subscriptionID);
+            var subscription = DB.Subscription.Find(subscriptionId);
             DB.Subscription.Delete(subscription);
         }
     }
