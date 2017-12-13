@@ -10,7 +10,7 @@ using WebApi.Repositories;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("game/v1/accounts")]
+    [RoutePrefix("game/v1/accounts/{accountId:int}/subscriptions/")]
     public class SubscriptionsController : ApiController
     {
         [Route("")]
@@ -21,8 +21,10 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public Subscription AddSubscription([FromBody]Subscription subscription)
+        public Subscription AddSubscription(int accountId,[FromBody]Subscription subscription)
         {
+            subscription.AccountId = accountId;
+
             var entity = DB.Subscription.Add(subscription);
             return entity;
         }

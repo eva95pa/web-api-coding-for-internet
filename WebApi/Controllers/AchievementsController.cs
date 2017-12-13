@@ -24,13 +24,14 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public Achievements AddAchievements(int achievementId, [FromBody]Achievements achievement)
+        public Achievements AddAchievements(int characterId, [FromBody]Achievements achievement)
         {
 
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            achievement.Id = achievementId;
+            achievement.CharacterId = characterId;
+
             var entity = DB.Achievements.Add(achievement);
             return entity;
 
