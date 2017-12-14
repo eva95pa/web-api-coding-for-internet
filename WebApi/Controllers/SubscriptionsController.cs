@@ -10,6 +10,7 @@ using WebApi.Repositories;
 
 namespace WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("game/v1/accounts/{accountId:int}/subscriptions")]
     public class SubscriptionsController : ApiController
     {
@@ -25,7 +26,7 @@ namespace WebApi.Controllers
         public Subscription AddSubscription(int accountId,[FromBody]Subscription subscription)
         {
             subscription.AccountId = accountId;
-
+           
             var entity = DB.Subscription.Add(subscription);
             return entity;
         }

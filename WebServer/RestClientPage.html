@@ -124,14 +124,13 @@
                 </div>
             </li>
         </ol>
-    </div>
+    </div> 
 </body>
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
 <script>
     var apiBaseUrl = 'http://ksit.xyz/game/v1';
     var accountsUri = apiBaseUrl + '/accounts';
-    var achievementUri = accountsUri + '/' + $("#accountIdForCharacter") + '/characters/' + $("#personId") + '/achievements';
 
     function createAccount() {
         var account = {};
@@ -146,9 +145,7 @@
                 $("#lastCreatedAccountId").text(data.Id);
             }
         });
-    }   
-
-    
+    }
 
     function findAllAccounts() {
         $.getJSON(accountsUri)
@@ -162,8 +159,6 @@
                 $('<li>', { text: "Error during obtaining accounts" }).appendTo($('#accounts'));
             });
     }
-
-    
 
     function updateAccount() {
         var account = {};
@@ -185,8 +180,6 @@
         });
     }
 
-
-
     function deleteAccount() {
         var specificAccountUri = accountsUri + '/' + $("#accountId").val();
         $.ajax({
@@ -205,6 +198,5 @@
         return account.Id + '. ' + account.Nickname + ': ' + account.Roles;
     }
 
-    }
 </script>
 </html>
