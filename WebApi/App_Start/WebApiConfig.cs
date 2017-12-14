@@ -36,6 +36,7 @@ namespace WebApi
             DB.Characters.Add(new Character { Name = "Gendalf", Class = "Mage", Experience = 40000, Level = 5, AccountId = 1 });
 
             DB.Achievements.Add(new Achievements { Name = "winner", Cost = 100, CharacterId = 1, Id = 1 });
+            DB.Subscription.Add(new Subscription { Name = "Monthly", Days = 30, IsTrial = true, AccountId = 1, Id = 1 });
 
         }
     }

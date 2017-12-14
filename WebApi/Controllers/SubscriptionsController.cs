@@ -13,6 +13,7 @@ namespace WebApi.Controllers
     [RoutePrefix("game/v1/accounts/{accountId:int}/subscriptions")]
     public class SubscriptionsController : ApiController
     {
+        [HttpGet]
         [Route("")]
         public IEnumerable<Subscription> GetAllSubscription()
         {
