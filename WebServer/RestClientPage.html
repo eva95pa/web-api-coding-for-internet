@@ -124,242 +124,7 @@
                 </div>
             </li>
         </ol>
-        <p>
-            <b>POST  /game/v1/accounts/{id}/characters</b>
-        </p>
-        <div>
-            <p>
-                This request allows us to to create a new account:
-                <form id="createPersonForm">
-                    <table>
-                        <tr>
-                            <td>Account ID:</td>
-                            <td><input type="text" id="accountIdForCharacter" value="0"></td>
-                        </tr>
-                        <tr>
-                            <td>Character ID:</td>
-                            <td><input type="text" id="personId" value="0"></td>
-                        </tr>
-                        <tr>
-                            <td>Name:</td>
-                            <td><input type="text" id="personName" value="Noname"></td>
-                        </tr>
-                        <tr>
-                            <td>Class:</td>
-                            <td><input type="text" id="personClass" value="Class"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="button" value="Create person" onclick="createPerson();" /></td>
-                        </tr>
-                        <tr>
-                            <td>Last created Person ID:</td>
-                            <td id="lastCreatedPersonId"></td>
-                        </tr>
-                    </table>
-                </form>
-            </p>
-        </div>
-        </li>
-        <li>
-            <p>
-                <b>GET /game/v1/accounts/{id}/characters</b>
-            </p>
-            <div>
-                <p>
-                    Here will be displayed all the characters in the account if you press this button:
-                    <input type="button" value="Get all characters" onclick="findAllCharacters();" />
-                    <ul id="persons"></ul>
-                </p>
-            </div>
-        </li>
-
-        <li>
-            <p>
-                <b>PUT /game/v1/accounts/{accountId}/charcters</b>
-            </p>
-            <div>
-                <p>
-                    Now you can update an character:
-                    <form id="updateCharacterForm">
-                        <table>
-                            <tr>
-                                <td>Character ID:</td>
-                                <td><input type="text" id="updateCharacterId"></td>
-                            </tr>
-                            <tr>
-                                <td>Name:</td>
-                                <td><input type="text" id="updateCharacterName"></td>
-                            </tr>
-                            <tr>
-                                <td>Class:</td>
-                                <td><input type="text" id="updateCharacterClass"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="button" value="Update character" onclick="updateCharacter();" /></td>
-                            </tr>
-                            <tr>
-                                <td>Last result:</td>
-                                <td id="lastUpdateCharacterResult"></td>
-                            </tr>
-                        </table>
-                    </form>
-                </p>
-            </div>
-        </li>
-
-        <li>
-            <p>
-                <b>DELETE /game/v1/accounts/{accontId}/character</b>
-            </p>
-            <div>
-                <p>
-                    Finally, you can delete an character using its identifier:
-                    <form id="deleteCharacterForm">
-                        <table>
-                            <tr>
-                                <td>Character ID:</td>
-                                <td><input type="text" id="characterId" /></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="button" value="Delete the character" onclick="deleteCharacter();" /></td>
-                            </tr>
-                            <tr>
-                                <td>Last result:</td>
-                                <td id="deleteCharacterResult"></td>
-                            </tr>
-                        </table>
-                    </form>
-                </p>
-            </div>
-        </li>
     </div>
-
-
-    <div style="padding-left:20%; padding-right:20%; padding-top:2cm">
-        <h1>Request for Lab 3</h1>
-
-        <div>
-            <p>
-                Here are some request for Add, Upadate, Delete and Get achievements.
-            </p>
-        </div>
-        <ol>
-            <li>
-                <p>
-                    <b>POST "game/v1/accounts/{accountId:int}/characters/{characterId:int}/achievements</b>
-                </p>
-                <div>
-                    <p>
-                        This request allows us to to create a new achievement:
-                        <form id="createAchievementForm">
-                            <table>
-                                <tr>
-                                    <td>Account ID:</td>
-                                    <td><input type="text" id="accountIdForCharacter" value="0"></td>
-                                </tr>
-                                <tr>
-                                    <td>Character ID:</td>
-                                    <td><input type="text" id="personId" value="0"></td>
-                                </tr>
-                                <tr>
-                                    <td>Name:</td>
-                                    <td><input type="text" id="achievementName" value="Noname"></td>
-                                </tr>
-                                <tr>
-                                    <td>Cost:</td>
-                                    <td><input type="text" id="achievementCost" value=0></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><input type="button" value="Create achievement" onclick="createAchievement();" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Last created Achievement ID:</td>
-                                    <td id="lastCreatedAchievementId"></td>
-                                </tr>
-                            </table>
-                        </form>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <p>
-                    <b>GET /game/v1/accounts</b>
-                </p>
-                <div>
-                    <p>
-                        Here will be displayed all the accounts in the system if you press this button:
-                        <input type="button" value="Get all accounts" onclick="findAllAccounts();" />
-                        <ul id="accounts"></ul>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <p>
-                    <b>PUT /game/v1/accounts/{accountId}</b>
-                </p>
-                <div>
-                    <p>
-                        Now you can update an account:
-                        <form id="updateAccountForm">
-                            <table>
-                                <tr>
-                                    <td>Account ID:</td>
-                                    <td><input type="text" id="updateAccountId"></td>
-                                </tr>
-                                <tr>
-                                    <td>Nickname:</td>
-                                    <td><input type="text" id="updateAccountNickname"></td>
-                                </tr>
-                                <tr>
-                                    <td>Roles (comma separated):</td>
-                                    <td><input type="text" id="apdateAccountRoles"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><input type="button" value="Update account" onclick="updateAccount();" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Last result:</td>
-                                    <td id="lastUpdateAccountResult"></td>
-                                </tr>
-                            </table>
-                        </form>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <p>
-                    <b>DELETE /game/v1/accounts/{accontId}</b>
-                </p>
-                <div>
-                    <p>
-                        Finally, you can delete an account using its identifier:
-                        <form id="deleteAccountForm">
-                            <table>
-                                <tr>
-                                    <td>Account ID:</td>
-                                    <td><input type="text" id="accountId" /></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><input type="button" value="Delete the account" onclick="deleteAccount();" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Last result:</td>
-                                    <td id="deleteAccountResult"></td>
-                                </tr>
-                            </table>
-                        </form>
-                    </p>
-                </div>
-            </li>
-        </ol>
-    </div>
-
 </body>
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
@@ -383,22 +148,7 @@
         });
     }   
 
-    function createPerson() {
-        var person = {};
-        accounts.id = $("#accountIdForCharacter").val();
-        person.Id = $("#personId").val();
-        person.Name = $("#personName").val();
-        person.Class = $("#personClass").val();
-
-        $.ajax({
-            url: personUri,
-            type: 'POST',
-            data: person,
-            success: function (data) {
-                $("#lastCreatedPersonId").text(data.Id);
-            }
-        });
-    }
+    
 
     function findAllAccounts() {
         $.getJSON(accountsUri)
@@ -413,18 +163,7 @@
             });
     }
 
-    function findAllCharacters() {
-        $.getJSON(personUri)
-            .done(function (data) {
-                $('#').empty();
-                $.each(data, function (key, person) {
-                    $('<li>', { text: formatPerson(person) }).appendTo($('#persons'));
-                });
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                $('<li>', { text: "Error during obtaining characters" }).appendTo($('#persons'));
-            });
-    }
+    
 
     function updateAccount() {
         var account = {};
@@ -446,26 +185,7 @@
         });
     }
 
-    function updateCharacter() {
-        var person = {};
-        person.Id = $("#updateCharacterId").val();
-        person.Name = $("#updateCharacterName").val();
-        person.Class = $("#updateCharacterClass").val();
 
-
-        var specificPersonUri = personUri + '/' + $("#updateCharacterId").val();
-        $.ajax({
-            url: specificPersonUri,
-            type: 'PUT',
-            data: person,
-            success: function (result) {
-                $("#lastUpdateCharacterResult").text("Success");
-            },
-            fail: function (result) {
-                $("#lastUpdateCharacterResult").text("Failure");
-            }
-        });
-    }
 
     function deleteAccount() {
         var specificAccountUri = accountsUri + '/' + $("#accountId").val();
@@ -481,47 +201,10 @@
         });
     }
 
-    function deleteCharacter() {
-        var specificPersonUri = personUri + '/' + $("#characterId").val();
-        $.ajax({
-            url: specificPersonUri,
-            type: 'DELETE',
-            success: function (result) {
-                $("#deleteCharacterResult").text("Success");
-            },
-            fail: function (result) {
-                $("#deleteCharacterResult").text("Failure");
-            }
-        });
-    }
-
-    function createAchievement() {
-        var achievement = {};
-        accounts.id = $("#accountIdForCharacter").val();
-        person.Id = $("#personId").val();
-        achievement.Name = $("#achievementName").val();
-        account.Cost = $("#achievementCost").val();
-
-        $.ajax({
-            url: achievementUri,
-            type: 'POST',
-            data: achievement,
-            success: function (data) {
-                $("#lastCreatedAccountId").text(data.Id);
-            }
-        });
-    }
-
     function formatAccount(account) {
         return account.Id + '. ' + account.Nickname + ': ' + account.Roles;
     }
 
-    function formatPerson(person) {
-        return person.Id + '. ' + person.Name + ': ' + person.Class;
-    }
-
-    function formatAchievement(achievement) {
-        return achievement.Id + '. ' + achievement.Name + ': ' + achievement.Cost;
     }
 </script>
 </html>
