@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("{characterId:int}")]
+        [Route("{characterId:int}/inventory")]
         public Inventory GetInventory(int characterId)
         {
             var inventory = DB.Inventories.FindByCharacterId(characterId);
