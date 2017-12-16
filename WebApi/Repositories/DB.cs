@@ -27,5 +27,6 @@ namespace WebApi.Repositories
 
         private static SubscriptionsRepository subscriptionsRepository = new SubscriptionsRepository();
         public static SubscriptionsRepository Subscription { get { return subscriptionsRepository; } }
+
     }
 }
