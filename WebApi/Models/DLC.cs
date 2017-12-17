@@ -14,7 +14,7 @@ namespace WebApi.Models
         public string Name { get; set; }
 
         [Required]
-        public bool Status { get; set; }
+        public bool IsDownloaded { get; set; }
 
         [JsonIgnore]
         [XmlIgnore]

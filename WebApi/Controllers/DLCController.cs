@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("{DLCId:int}")]
+        [Route("{dlcID:int}")]
         public DLC UpdateDLC(int dlcID, [FromBody]DLC dlc)
         {
             dlc.Id = dlcID;
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("{dlc:int}")]
+        [Route("{dlcID:int}")]
         public void RemoveDLC(int dlcID)
         {
             var dlc = DB.DLC.Find(dlcID);
