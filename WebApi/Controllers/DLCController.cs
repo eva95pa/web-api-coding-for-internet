@@ -15,9 +15,9 @@ namespace WebApi.Controllers
     {
         [HttpGet]
         [Route("")]
-        public IEnumerable<DLC> GetAllDLC()
+        public IEnumerable<DLC> GetAllDLC(int accountId)
         {
-            return DB.DLC.FindAll();
+            return DB.DLC.FindAllByAccountId(accountId);
         }
 
         [HttpPost]
@@ -32,9 +32,10 @@ namespace WebApi.Controllers
 
         [HttpPut]
         [Route("{dlcID:int}")]
-        public DLC UpdateDLC(int dlcID, [FromBody]DLC dlc)
+        public DLC UpdateDLC(int dlcID, int accountId, [FromBody]DLC dlc)
         {
             dlc.Id = dlcID;
+            dlc.AccountId = accountId;
             DB.DLC.Update(dlc);
 
             var updateDLC = DB.DLC.Find(dlcID);
