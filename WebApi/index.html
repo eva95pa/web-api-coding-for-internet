@@ -4,68 +4,40 @@
     <title>Game Server App</title>
 </head>
 <body>
-    <h1>This is the start page for the Game Api being developed during Coding for the Internet course</h1>
+    <h2>This is the start page for the Game Api being developed during Coding for the Internet course</h2>
     <b>Path to the API:</b> /game/v1/
+    
     <div>
-        <h2>Create new Account</h2>
-        <input type="text" id="username" size="5" />
-        <input type="password" id="password" size="5" />
-        <input type="button" value="Sign up" onclick="createAccount();" />
-        <p id="account" />
-    </div>
-    <div>
-        <h2>All accounts</h2>
+        <h3>Right now there are several accounts in the database:</h3>
         <ul id="accounts" />
     </div>
-    <div>
-        <h2>Search by ID</h2>
-        <input type="text" id="accountId" size="5" />
-        <input type="button" value="Search" onclick="find();" />
-        <p id="account" />
-    </div>
-
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-    <script>
-        var uri = 'game/v1/accounts';
-
-        $(document).ready(function () {
-            // Send an AJAX request
-            $.getJSON(uri)
-                .done(function (data) {
-                    // On success, 'data' contains a list of products.
-                    $.each(data, function (key, item) {
-                        // Add a list item for the product.
-                        $('<li>', { text: formatItem(item) }).appendTo($('#accounts'));
-                    });
-                });
-        });
-
-        function formatItem(item) {
-            return item.Nickname + ': ' + item.Roles;
-        }
-
-        function find() {
-            var id = $('#accountId').val();
-            $.getJSON(uri + '/' + id)
-                .done(function (data) {
-                    $('#account').text(formatItem(data));
-                })
-                .fail(function (jqXHR, textStatus, err) {
-                    $('#account').text('Error: ' + err);
-                });
-        }
-
-        function createAccount() {
-            var username = $('#username').val();
-            var username = $('#password').val();
-            $.post(uri + '/' + id)
-                .done(function (data) {
-                    $('#account').text(formatItem(data));
-                })
-                .fail(function (jqXHR, textStatus, err) {
-                    $('#account').text('Error: ' + err);
-                });
-        }
-    </script>
+    
+        <p>
+            This list has been acquired via sending the GET request to the API:
+            <br />
+            <b><a href="http://ksit.xyz/game/v1/accounts">http://ksit.xyz/game/v1/accounts</a></b>
+        </p>
 </body>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+    var uri = 'http://ksit.xyz/game/v1/accounts';
+
+    $(document).ready(function () {
+        // Send an AJAX request
+        $.getJSON(uri)
+            .done(function (data) {
+                // On success, 'data' contains a list of products.
+                $.each(data, function (key, item) {
+                    // Add a list item for the product.
+                    $('<li>', { text: formatItem(item) }).appendTo($('#accounts'));
+                });
+            });
+    });
+
+    function formatItem(item) {
+        return item.Nickname + ': ' + item.Roles;
+    }
+</script>
+
 </html>

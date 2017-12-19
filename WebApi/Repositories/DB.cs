@@ -30,7 +30,5 @@ namespace WebApi.Repositories
 
         private static DLCRepository dLCRepository = new DLCRepository();
         public static DLCRepository DLC { get { return dLCRepository; } }
-
-
     }
 }
